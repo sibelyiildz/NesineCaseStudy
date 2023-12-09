@@ -4,20 +4,23 @@ plugins {
 }
 
 android {
-    namespace = "com.example.nesinecasestudy"
-    compileSdk = 34
+    namespace = Configs.NAME_SPACE
+    compileSdk = Configs.COMPILE_SDK_VERSION
 
     defaultConfig {
-        applicationId = "com.example.nesinecasestudy"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = Configs.APPLICATION_ID
+        minSdk = Configs.MIN_SDK_VERSION
+        targetSdk = Configs.TARGET_SDK_VERSION
+        versionCode = Configs.VERSION_CODE
+        versionName = Configs.VERSION_NAME
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = Configs.TEST_INSTRUMENTATION_RUNNER
     }
 
     buildTypes {
+        debug {
+            versionNameSuffix = "-dev"
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -37,11 +40,27 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.10.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(Dependencies.CORE_KTX)
+    implementation(Dependencies.APP_COMPAT)
+    implementation(Dependencies.MATERIAL)
+    implementation(Dependencies.CONSTRAINT)
+    testImplementation(Dependencies.JUNIT)
+    androidTestImplementation(Dependencies.TEST_EXT)
+    androidTestImplementation(Dependencies.ESPRESSO)
+
+    implementation(Dependencies.NAVIGATION_FRAGMENT)
+    implementation(Dependencies.NAVIGATION_UI)
+
+    implementation(Dependencies.GLIDE)
+
+    implementation(Dependencies.RETROFIT)
+
+    implementation(Dependencies.GSON)
+    implementation(Dependencies.RETROFIT_GSON)
+
+    implementation(Dependencies.OKHTTP_LOGGER)
+    implementation(Dependencies.CHUCKER)
+
+    implementation(Dependencies.COROUTINES_ANDROID)
+
 }
