@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Posts.Toolbar" parent="Widget.MaterialComponents.Toolbar.PrimarySurface">
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="titleTextAppearance">@style/Posts.TextAppearance.Regular.16</item>
+        <item name="subtitleTextAppearance">@style/Posts.TextAppearance.Regular.14</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="titleCentered">false</item>
+        <item name="subtitleCentered">false</item>
+        <item name="titleTextColor">@color/white</item>
+        <item name="subtitleTextColor">@color/white</item>
+    </style>
+
+    <style name="ShapeAppearance.ShapeableImageView.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+</resources>

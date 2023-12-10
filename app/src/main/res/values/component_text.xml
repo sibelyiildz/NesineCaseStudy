@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Posts.TextAppearance" parent="android:TextAppearance" />
+
+    <!-- REGULAR -->
+
+    <style name="Posts.TextAppearance.Regular">
+        <item name="fontFamily">@font/asap_regular</item>
+        <item name="android:fontFamily">@font/asap_regular</item>
+    </style>
+
+    <style name="Posts.TextAppearance.Regular.8">
+        <item name="android:textSize">@dimen/font8</item>
+    </style>
+
+    <style name="Posts.TextAppearance.Regular.10">
+        <item name="android:textSize">@dimen/font10</item>
+    </style>
+
+    <style name="Posts.TextAppearance.Regular.12">
+        <item name="android:textSize">@dimen/font12</item>
+    </style>
+
+    <style name="Posts.TextAppearance.Regular.14">
+        <item name="android:textSize">@dimen/font14</item>
+    </style>
+
+    <style name="Posts.TextAppearance.Regular.16">
+        <item name="android:textSize">@dimen/font16</item>
+    </style>
+
+    <style name="Posts.TextAppearance.Regular.18">
+        <item name="android:textSize">@dimen/font18</item>
+    </style>
+
+    <style name="Posts.TextAppearance.Regular.20">
+        <item name="android:textSize">@dimen/font20</item>
+    </style>
+
+    <style name="Posts.TextAppearance.Regular.22">
+        <item name="android:textSize">@dimen/font22</item>
+    </style>
+
+    <style name="Posts.TextAppearance.Regular.24">
+        <item name="android:textSize">@dimen/font24</item>
+    </style>
+
+    <style name="Posts.TextAppearance.Regular.26">
+        <item name="android:textSize">@dimen/font26</item>
+    </style>
+
+    <style name="Posts.TextAppearance.Regular.28">
+        <item name="android:textSize">@dimen/font28</item>
+    </style>
+
+    <style name="Posts.TextAppearance.Regular.30">
+        <item name="android:textSize">@dimen/font30</item>
+    </style>
+
+</resources>

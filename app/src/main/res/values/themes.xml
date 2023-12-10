@@ -3,7 +3,13 @@
     <style name="Base.Theme.NesineCaseStudy" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimaryVariant">@color/dark_blue</item>
+        <item name="colorPrimary">@color/blue</item>
     </style>
 
-    <style name="Theme.NesineCaseStudy" parent="Base.Theme.NesineCaseStudy" />
+    <style name="Theme.NesineCaseStudy" parent="Base.Theme.NesineCaseStudy">
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:textColor">@color/soft_black</item>
+        <item name="toolbarStyle">@color/soft_black</item>
+    </style>
 </resources>
