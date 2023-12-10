@@ -12,6 +12,9 @@ object Dependencies {
     const val LIFECYCLE_VIEW_MODEL = "${LIFECYCLE}viewmodel-ktx:${Versions.Androidx.LIFECYCLE}"
     const val LIFECYCLE_LIVEDATA = "${LIFECYCLE}livedata-ktx:${Versions.Androidx.LIFECYCLE}"
 
+    const val SUPPORT_LEGACY =
+        "androidx.legacy:legacy-support-v4:${Versions.Androidx.SUPPORT_LEGACY}"
+
     const val MATERIAL = "com.google.android.material:material:${Versions.MATERIAL_ANDROID}"
     const val CONSTRAINT = "androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT}"
 
@@ -30,5 +33,9 @@ object Dependencies {
     const val JUNIT = "junit:junit:${Versions.JUNIT4}"
     const val TEST_EXT = "androidx.test.ext:junit:${Versions.TEST_EXT}"
     const val ESPRESSO = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO}"
+
+    private const val HILT = "com.google.dagger:hilt-"
+    const val HILT_ANDROID = "${HILT}android:${Versions.HILT}"
+    const val HILT_COMPILER = "${HILT}compiler:${Versions.HILT}"
 
 }

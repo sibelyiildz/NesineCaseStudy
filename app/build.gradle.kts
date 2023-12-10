@@ -1,6 +1,10 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -19,10 +23,12 @@ android {
 
     buildTypes {
         debug {
+            buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
             versionNameSuffix = "-dev"
         }
         release {
-            isMinifyEnabled = false
+            buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -36,6 +42,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -44,6 +54,9 @@ dependencies {
     implementation(Dependencies.APP_COMPAT)
     implementation(Dependencies.MATERIAL)
     implementation(Dependencies.CONSTRAINT)
+    implementation(Dependencies.LIFECYCLE_LIVEDATA)
+    implementation(Dependencies.LIFECYCLE_VIEW_MODEL)
+    implementation(Dependencies.SUPPORT_LEGACY)
     testImplementation(Dependencies.JUNIT)
     androidTestImplementation(Dependencies.TEST_EXT)
     androidTestImplementation(Dependencies.ESPRESSO)
@@ -62,5 +75,8 @@ dependencies {
     implementation(Dependencies.CHUCKER)
 
     implementation(Dependencies.COROUTINES_ANDROID)
+
+    implementation(Dependencies.HILT_ANDROID)
+    kapt(Dependencies.HILT_COMPILER)
 
 }

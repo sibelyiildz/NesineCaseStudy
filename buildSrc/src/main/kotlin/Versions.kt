@@ -5,6 +5,7 @@ object Versions {
         const val LIFECYCLE = "2.6.2"
         const val CORE_KTX = "1.12.0"
         const val NAVIGATION = "2.7.5"
+        const val SUPPORT_LEGACY = "1.0.0"
         const val NAVIGATION_SAFE_ARGS = "2.7.1"
     }
 
@@ -24,5 +25,7 @@ object Versions {
     const val JUNIT4 = "4.13.2"
     const val ESPRESSO = "3.5.1"
     const val TEST_EXT = "1.1.5"
+
+    const val HILT = "2.49"
 
 }
