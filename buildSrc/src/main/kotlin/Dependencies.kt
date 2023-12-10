@@ -26,6 +26,9 @@ object Dependencies {
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
     const val GSON = "com.google.code.gson:gson:${Versions.GSON}"
     const val RETROFIT_GSON = "com.squareup.retrofit2:converter-gson:${Versions.RETROFIT_GSON}"
+    const val RETROFIT_RXJAVA = "com.squareup.retrofit2:adapter-rxjava2:${Versions.RETROFIT}"
+
+    const val RX_ANDROID = "io.reactivex.rxjava2:rxandroid:${Versions.RX_JAVA}"
 
     const val COROUTINES_ANDROID =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES_ANDROID}"

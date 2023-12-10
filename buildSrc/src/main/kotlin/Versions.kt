@@ -19,6 +19,8 @@ object Versions {
     const val GSON = "2.10.1"
     const val RETROFIT_GSON = "2.0.0"
 
+    const val RX_JAVA = "2.1.1"
+
     const val OKHTTP3 = "4.11.0"
     const val CHUCKER = "4.0.0"
 

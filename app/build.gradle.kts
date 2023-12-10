@@ -67,6 +67,9 @@ dependencies {
     implementation(Dependencies.GLIDE)
 
     implementation(Dependencies.RETROFIT)
+    implementation(Dependencies.RETROFIT_RXJAVA)
+
+    implementation(Dependencies.RX_ANDROID)
 
     implementation(Dependencies.GSON)
     implementation(Dependencies.RETROFIT_GSON)
