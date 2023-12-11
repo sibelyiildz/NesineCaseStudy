@@ -10,4 +10,13 @@
         android:name="com.example.nesinecasestudy.ui.list.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/postDetailFragment"
+        android:name="com.example.nesinecasestudy.ui.detail.PostDetailFragment"
+        android:label="fragment_post_detail"
+        tools:layout="@layout/fragment_post_detail" />
+
+    <action
+        android:id="@+id/action_postDetailFragment"
+        app:destination="@id/postDetailFragment" />
 </navigation>

@@ -2,9 +2,11 @@ package com.example.nesinecasestudy.ui.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.nesinecasestudy.NavGraphDirections
 import com.example.nesinecasestudy.data.remote.model.PostResponse
 import com.example.nesinecasestudy.databinding.ListItemPostBinding
 import com.example.nesinecasestudy.extension.setImageFromPos
@@ -48,9 +50,12 @@ class PostsAdapter() : ListAdapter<PostResponse, PostsAdapter.ViewHolder>(DIFF) 
         RecyclerView.ViewHolder(binding.root) {
         fun bindData(data: PostResponse) {
             with(binding) {
-                image.setImageFromPos(binding.root.context, adapterPosition, binding.progressBar)
+                image.setImageFromPos(root.context, adapterPosition, progressBar)
                 title.text = data.title
                 desc.text = data.body
+                root.setOnClickListener {
+                    root.findNavController().navigate(NavGraphDirections.actionPostDetailFragment())
+                }
             }
         }
 
