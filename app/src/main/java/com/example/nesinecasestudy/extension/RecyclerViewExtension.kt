@@ -4,7 +4,7 @@ import android.graphics.drawable.InsetDrawable
 import androidx.annotation.DimenRes
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
-
+import androidx.recyclerview.widget.RecyclerView
 
 fun Fragment.linearDivider(
     isHorizontal: Boolean = false,
@@ -26,4 +26,20 @@ fun Fragment.linearDivider(
         itemDecoration.setDrawable(insetDivider)
     }
     return itemDecoration
+}
+
+fun <T : RecyclerView.ViewHolder> RecyclerView.attach(
+    adapter: RecyclerView.Adapter<T>,
+    decorators: RecyclerView.ItemDecoration,
+    scrollListener: RecyclerView.OnScrollListener? = null
+) {
+    this.adapter = adapter
+    addItemDecoration(decorators)
+    scrollListener?.let { addOnScrollListener(it) }
+}
+
+fun RecyclerView.detach() {
+    adapter = null
+    removeItemDecoration(getItemDecorationAt(0))
+    clearOnScrollListeners()
 }

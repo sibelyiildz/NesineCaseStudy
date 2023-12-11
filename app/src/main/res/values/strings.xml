@@ -2,4 +2,8 @@
     <string name="app_name">NesineCaseStudy</string>
     <string name="error">Error</string>
     <string name="okay">Okay</string>
+    <string name="post_delete_message">Do you want to delete the post?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="warning">Warning</string>
 </resources>
