@@ -30,4 +30,6 @@ object Versions {
 
     const val HILT = "2.49"
 
+    const val LOTTIE = "6.2.0"
+
 }

@@ -20,8 +20,8 @@ class HomeViewModel @Inject constructor(
     val posts = _posts.toLiveData()
 
     fun fetchPosts() {
+        _posts.setThreadingValue(UIState.Loading)
         getPostsUseCase.execute(Unit) {
-            _posts.setThreadingValue(UIState.Loading)
             when (it) {
                 is Result.Success -> {
                     _posts.setThreadingValue(UIState.Success(it.data))

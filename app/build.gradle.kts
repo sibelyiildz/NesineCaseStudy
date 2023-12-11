@@ -82,4 +82,6 @@ dependencies {
     implementation(Dependencies.HILT_ANDROID)
     kapt(Dependencies.HILT_COMPILER)
 
+    implementation(Dependencies.LOTTIE)
+
 }

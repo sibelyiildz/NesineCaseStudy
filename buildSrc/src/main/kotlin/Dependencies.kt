@@ -41,4 +41,6 @@ object Dependencies {
     const val HILT_ANDROID = "${HILT}android:${Versions.HILT}"
     const val HILT_COMPILER = "${HILT}compiler:${Versions.HILT}"
 
+    const val LOTTIE = "com.airbnb.android:lottie:${Versions.LOTTIE}"
+
 }
