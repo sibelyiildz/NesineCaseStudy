@@ -11,4 +11,6 @@ interface Repository {
     fun fetchAndSave(): Completable
 
     fun getAllPostFromLocal(): Observable<List<PostResponse>>
+
+    fun deletePost(id: Int): Completable
 }

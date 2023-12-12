@@ -15,4 +15,7 @@ interface PostDao {
 
     @Query("SELECT * FROM post")
     fun getAllPosts(): Observable<List<PostEntity>>
+
+    @Query("DELETE FROM post WHERE id = :id")
+    fun deletePost(id: Int): Completable
 }

@@ -7,8 +7,8 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Keep
 data class PostResponse(
-    val userId: Int,
     val id: Int,
+    val userId: Int,
     val title: String,
     val body: String,
     val imageUrl: String?

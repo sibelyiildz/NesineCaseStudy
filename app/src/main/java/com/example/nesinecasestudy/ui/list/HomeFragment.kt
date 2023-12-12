@@ -67,7 +67,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     setTitle(getString(R.string.warning))
                     setMessage(getString(R.string.post_delete_message))
                     setPositiveButton(getString(R.string.yes)) { _, _ ->
-                        adapter.deleteItem(viewHolder.adapterPosition)
+                        viewModel.deletePost(adapter.currentList[viewHolder.adapterPosition].id)
                     }
                     setNegativeButton(getString(R.string.no)) { _, _ ->
                         adapter.notifyItemChanged(viewHolder.adapterPosition)

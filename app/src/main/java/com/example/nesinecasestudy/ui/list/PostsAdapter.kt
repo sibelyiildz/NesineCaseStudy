@@ -36,16 +36,6 @@ class PostsAdapter() : ListAdapter<PostResponse, PostsAdapter.ViewHolder>(DIFF) 
         holder.bindData(currentList[position])
     }
 
-    // TODO: Başka  bir çözüm  düşün
-    fun deleteItem(pos: Int) {
-        // currentList.removeAt(pos)
-        //notifyItemRemoved(pos)
-        val newList = ArrayList<PostResponse>()
-        newList.addAll(currentList)
-        newList.removeAt(pos)
-        submitList(newList)
-    }
-
     inner class ViewHolder(private val binding: ListItemPostBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindData(data: PostResponse) {

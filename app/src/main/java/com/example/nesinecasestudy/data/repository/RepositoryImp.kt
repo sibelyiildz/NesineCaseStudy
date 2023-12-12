@@ -35,9 +35,13 @@ class RepositoryImp @Inject constructor(private val api: Api, private val postDa
     override fun getAllPostFromLocal(): Observable<List<PostResponse>> {
         return postDao.getAllPosts().map {
             it.map {
-                PostResponse (it.id, it.userId, it.title, it.body, it.imageUrl)
+                PostResponse(it.id, it.userId, it.title, it.body, it.imageUrl)
             }
         }
+    }
+
+    override fun deletePost(id: Int): Completable {
+        return postDao.deletePost(id)
     }
 
 }
