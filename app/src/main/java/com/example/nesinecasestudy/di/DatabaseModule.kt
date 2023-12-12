@@ -3,8 +3,11 @@ package com.example.nesinecasestudy.di
 import android.content.Context
 import androidx.room.Room
 import com.example.nesinecasestudy.BuildConfig
+import com.example.nesinecasestudy.data.local.LocalDataSource
+import com.example.nesinecasestudy.data.local.LocalDataSourceImp
 import com.example.nesinecasestudy.data.local.PostDao
 import com.example.nesinecasestudy.data.local.PostDatabase
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,9 +15,9 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@InstallIn(SingletonComponent::class)
 @Module
-object DatabaseModule {
+@InstallIn(SingletonComponent::class)
+interface DatabaseModule {
 
     @Provides
     @Singleton
@@ -31,4 +34,8 @@ object DatabaseModule {
     fun provideDao(postDatabase: PostDatabase): PostDao {
         return postDatabase.postDao()
     }
+
+    @Binds
+    @Singleton
+    fun bind(localDataSourceImp: LocalDataSourceImp): LocalDataSource
 }

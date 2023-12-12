@@ -3,9 +3,12 @@ package com.example.nesinecasestudy.di
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.nesinecasestudy.BuildConfig
+import com.example.nesinecasestudy.data.remote.RemoteDataSource
+import com.example.nesinecasestudy.data.remote.RemoteDataSourceImp
 import com.example.nesinecasestudy.data.remote.service.Api
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,9 +23,9 @@ import retrofit2.create
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-@InstallIn(SingletonComponent::class)
 @Module
-class NetworkModule {
+@InstallIn(SingletonComponent::class)
+interface NetworkModule {
 
     @Provides
     @Singleton
@@ -65,5 +68,9 @@ class NetworkModule {
     ): Api {
         return retrofit.create()
     }
+
+    @Binds
+    @Singleton
+    fun bindRemoteDataSource(remoteDataSourceImp: RemoteDataSourceImp): RemoteDataSource
 
 }

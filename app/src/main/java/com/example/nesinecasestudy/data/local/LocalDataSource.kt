@@ -1,12 +1,12 @@
-package com.example.nesinecasestudy.domain.repository
+package com.example.nesinecasestudy.data.local
 
 import com.example.nesinecasestudy.data.remote.model.PostResponse
 import io.reactivex.Completable
 import io.reactivex.Observable
 
-interface Repository {
+interface LocalDataSource {
 
-    fun fetchAndSave(): Completable
+    fun savePosts(postEntities: List<PostEntity>): Completable
 
     fun getAllPostFromLocal(): Observable<List<PostResponse>>
 

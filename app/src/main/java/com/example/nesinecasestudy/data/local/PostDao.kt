@@ -11,7 +11,7 @@ import io.reactivex.Observable
 interface PostDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPosts(users: List<PostEntity>): Completable
+    fun insertPosts(posts: List<PostEntity>): Completable
 
     @Query("SELECT * FROM post")
     fun getAllPosts(): Observable<List<PostEntity>>
