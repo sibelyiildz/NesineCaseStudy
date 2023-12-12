@@ -12,5 +12,7 @@ interface Repository {
 
     fun getAllPostFromLocal(): Observable<List<PostResponse>>
 
-    fun deletePost(id: Int): Completable
+    fun deletePost(postId: Int): Completable
+
+    fun updatePostTitleAndBody(postId: Int, title: String, body: String): Completable
 }

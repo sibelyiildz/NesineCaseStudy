@@ -19,7 +19,7 @@
         tools:layout_height="@dimen/margin100"
         tools:src="@color/gray" />
 
-    <TextView
+    <EditText
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,11 +27,17 @@
         android:textSize="@dimen/font16"
         tools:text="title" />
 
-    <TextView
+    <EditText
         android:id="@+id/desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/gray"
         android:textSize="@dimen/font14"
         tools:text="desc" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/updateButton"
+        android:text="@string/update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

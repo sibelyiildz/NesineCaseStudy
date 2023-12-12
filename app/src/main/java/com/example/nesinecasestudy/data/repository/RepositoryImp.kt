@@ -40,8 +40,12 @@ class RepositoryImp @Inject constructor(private val api: Api, private val postDa
         }
     }
 
-    override fun deletePost(id: Int): Completable {
-        return postDao.deletePost(id)
+    override fun deletePost(postId: Int): Completable {
+        return postDao.deletePost(postId)
+    }
+
+    override fun updatePostTitleAndBody(postId: Int, title: String, body: String): Completable {
+        return postDao.updatePostTitleAndBody(postId, title, body)
     }
 
 }

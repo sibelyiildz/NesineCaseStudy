@@ -8,13 +8,17 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class DeletePostUseCase @Inject constructor(
+class UpdatePostTitleAndBodyUseCase @Inject constructor(
     private val repository: Repository
-) : BaseRxUseCaseCompletable<DeletePostUseCase.Request>() {
+) : BaseRxUseCaseCompletable<UpdatePostTitleAndBodyUseCase.Request>() {
     @SuppressLint("CheckResult")
     override fun execute(request: Request): Completable {
         return Completable.create { source ->
-            repository.deletePost(postId = request.postId)
+            repository.updatePostTitleAndBody(
+                postId = request.postId,
+                title = request.title,
+                body = request.body
+            )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -29,7 +33,7 @@ class DeletePostUseCase @Inject constructor(
         }
     }
 
-    data class Request(val postId: Int)
+    data class Request(val postId: Int, val title: String, val body: String)
 
 
 }

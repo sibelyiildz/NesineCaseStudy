@@ -11,8 +11,9 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 
-class GetPostFromLocalUseCase @Inject constructor(private val repository: Repository) :
-    BaseRxUseCase<Unit, Result<List<PostResponse>>>() {
+class GetPostFromLocalUseCase @Inject constructor(
+    private val repository: Repository
+) : BaseRxUseCase<Unit, Result<List<PostResponse>>>() {
     @SuppressLint("CheckResult")
     override fun execute(request: Unit): Observable<Result<List<PostResponse>>> {
         return Observable.create { source ->

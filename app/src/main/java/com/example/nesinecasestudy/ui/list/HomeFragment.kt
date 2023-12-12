@@ -3,6 +3,7 @@ package com.example.nesinecasestudy.ui.list
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -16,6 +17,7 @@ import com.example.nesinecasestudy.extension.detach
 import com.example.nesinecasestudy.extension.dialog
 import com.example.nesinecasestudy.extension.errorDialog
 import com.example.nesinecasestudy.extension.linearDivider
+import com.example.nesinecasestudy.ui.detail.PostDetailFragment
 import com.example.nesinecasestudy.util.SwipeToDeleteCallback
 import com.example.nesinecasestudy.util.UIState
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,28 +34,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         recyclerViewInitialize()
 
-        viewModel.posts.observe(viewLifecycleOwner, ::postsObserver)
-    }
-
-    private fun postsObserver(response: UIState<List<PostResponse>>) {
-        setLoading(response is UIState.Loading)
-        when (response) {
-            is UIState.Success -> {
-                Log.v("LogTag", "Success -> ${response.data}")
-                adapter.submitList(response.data)
-            }
-
-            is UIState.Error -> {
-                errorDialog {
-                    setMessage(response.error.message)
-                }
-                Log.v("LogTag", "Error -> ${response.error}")
-            }
-
-            is UIState.Loading -> {
-                Log.v("LogTag", "Loading")
-            }
+        PostDetailFragment.setFragmentResultListener(this) {
+            viewModel.fetchPostFromLocal()
+            Toast.makeText(requireContext(), "List updated", Toast.LENGTH_SHORT).show()
         }
+
+        viewModel.posts.observe(viewLifecycleOwner, ::postsObserver)
     }
 
     private fun recyclerViewInitialize() {
@@ -79,6 +65,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(binding.postsRecyclerView)
 
+    }
+
+    private fun postsObserver(response: UIState<List<PostResponse>>) {
+        setLoading(response is UIState.Loading)
+        when (response) {
+            is UIState.Success -> {
+                Log.v("LogTag", "Success -> ${response.data}")
+                adapter.submitList(response.data)
+            }
+
+            is UIState.Error -> {
+                errorDialog {
+                    setMessage(response.error.message)
+                }
+                Log.v("LogTag", "Error -> ${response.error}")
+            }
+
+            is UIState.Loading -> {
+                Log.v("LogTag", "Loading")
+            }
+        }
     }
 
     override fun onDestroyView() {

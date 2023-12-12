@@ -34,7 +34,7 @@ class HomeViewModel @Inject constructor(
 
     fun fetchPostFromLocal() {
         _posts.setThreadingValue(UIState.Loading)
-        fetchAndSavePostsUseCase.execute(Unit, ::setResult).attach()
+        getPostFromLocalUseCase.execute(Unit, ::setResult).attach()
     }
 
     private fun setResult(it: Result<List<PostResponse>>) {
