@@ -2,6 +2,7 @@ package com.example.nesinecasestudy.ui.detail
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
@@ -9,6 +10,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.nesinecasestudy.R
 import com.example.nesinecasestudy.base.BaseFragment
 import com.example.nesinecasestudy.databinding.FragmentPostDetailBinding
 import com.example.nesinecasestudy.extension.setImageUrl
@@ -41,6 +43,8 @@ class PostDetailFragment :
     }
 
     private fun updatePostObserver(b: Boolean?) {
+        Toast.makeText(requireContext(), getString(R.string.post_updated), Toast.LENGTH_SHORT)
+            .show()
         setFragmentResult(POST_UPDATE, bundleOf())
         findNavController().popBackStack()
     }

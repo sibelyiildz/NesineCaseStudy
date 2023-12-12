@@ -3,8 +3,6 @@ package com.example.nesinecasestudy.ui.list
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +14,7 @@ import com.example.nesinecasestudy.extension.attach
 import com.example.nesinecasestudy.extension.detach
 import com.example.nesinecasestudy.extension.dialog
 import com.example.nesinecasestudy.extension.errorDialog
+import com.example.nesinecasestudy.extension.getDrawable
 import com.example.nesinecasestudy.extension.linearDivider
 import com.example.nesinecasestudy.ui.detail.PostDetailFragment
 import com.example.nesinecasestudy.util.SwipeToDeleteCallback
@@ -31,13 +30,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        recyclerViewInitialize()
-
         PostDetailFragment.setFragmentResultListener(this) {
             viewModel.fetchPostFromLocal()
-            Toast.makeText(requireContext(), "List updated", Toast.LENGTH_SHORT).show()
         }
+
+        recyclerViewInitialize()
 
         viewModel.posts.observe(viewLifecycleOwner, ::postsObserver)
     }
@@ -46,7 +43,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.postsRecyclerView.attach(adapter, itemDecoration)
 
         val swipeToDeleteCallback = object : SwipeToDeleteCallback(
-            ContextCompat.getDrawable(requireContext(), R.drawable.vc_delete)
+            getDrawable(R.drawable.vc_delete)
         ) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 dialog {

@@ -11,7 +11,7 @@ import com.example.nesinecasestudy.data.remote.model.PostResponse
 import com.example.nesinecasestudy.databinding.ListItemPostBinding
 import com.example.nesinecasestudy.extension.setImageUrl
 
-class PostsAdapter() : ListAdapter<PostResponse, PostsAdapter.ViewHolder>(DIFF) {
+class PostsAdapter : ListAdapter<PostResponse, PostsAdapter.ViewHolder>(DIFF) {
     companion object {
         private val DIFF = object : DiffUtil.ItemCallback<PostResponse>() {
             override fun areItemsTheSame(oldItem: PostResponse, newItem: PostResponse): Boolean {
@@ -19,7 +19,8 @@ class PostsAdapter() : ListAdapter<PostResponse, PostsAdapter.ViewHolder>(DIFF) 
             }
 
             override fun areContentsTheSame(oldItem: PostResponse, newItem: PostResponse): Boolean {
-                return oldItem == newItem
+                return oldItem.title == newItem.title &&
+                        oldItem.body == newItem.body
             }
         }
     }
@@ -44,7 +45,8 @@ class PostsAdapter() : ListAdapter<PostResponse, PostsAdapter.ViewHolder>(DIFF) 
                 title.text = data.title
                 desc.text = data.body
                 root.setOnClickListener {
-                    root.findNavController().navigate(NavGraphDirections.actionPostDetailFragment(data))
+                    it.findNavController()
+                        .navigate(NavGraphDirections.actionPostDetailFragment(data))
                 }
             }
         }

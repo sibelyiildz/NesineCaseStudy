@@ -8,9 +8,11 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         style="@style/Posts.Toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="@drawable/ic_toolbar_back"
         app:title="NESINE" />
 
     <androidx.fragment.app.FragmentContainerView

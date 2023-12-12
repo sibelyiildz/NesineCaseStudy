@@ -7,4 +7,7 @@
     <string name="no">No</string>
     <string name="warning">Warning</string>
     <string name="update">Update</string>
+    <string name="post_updated">Post Updated</string>
+    <string name="home">Home</string>
+    <string name="post_detail">Post Detail</string>
 </resources>
