@@ -14,7 +14,11 @@
         android:id="@+id/postDetailFragment"
         android:name="com.example.nesinecasestudy.ui.detail.PostDetailFragment"
         android:label="fragment_post_detail"
-        tools:layout="@layout/fragment_post_detail" />
+        tools:layout="@layout/fragment_post_detail">
+        <argument
+            android:name="postResponse"
+            app:argType="com.example.nesinecasestudy.data.remote.model.PostResponse" />
+    </fragment>
 
     <action
         android:id="@+id/action_postDetailFragment"

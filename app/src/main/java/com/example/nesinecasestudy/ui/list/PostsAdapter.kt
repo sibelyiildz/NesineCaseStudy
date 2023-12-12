@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.nesinecasestudy.NavGraphDirections
 import com.example.nesinecasestudy.data.remote.model.PostResponse
 import com.example.nesinecasestudy.databinding.ListItemPostBinding
-import com.example.nesinecasestudy.extension.setImageFromPos
+import com.example.nesinecasestudy.extension.setImageUrl
 
 class PostsAdapter() : ListAdapter<PostResponse, PostsAdapter.ViewHolder>(DIFF) {
     companion object {
@@ -50,11 +50,11 @@ class PostsAdapter() : ListAdapter<PostResponse, PostsAdapter.ViewHolder>(DIFF) 
         RecyclerView.ViewHolder(binding.root) {
         fun bindData(data: PostResponse) {
             with(binding) {
-                image.setImageFromPos(root.context, adapterPosition, progressBar)
+                image.setImageUrl(root.context, data.imageUrl, progressBar)
                 title.text = data.title
                 desc.text = data.body
                 root.setOnClickListener {
-                    root.findNavController().navigate(NavGraphDirections.actionPostDetailFragment())
+                    root.findNavController().navigate(NavGraphDirections.actionPostDetailFragment(data))
                 }
             }
         }

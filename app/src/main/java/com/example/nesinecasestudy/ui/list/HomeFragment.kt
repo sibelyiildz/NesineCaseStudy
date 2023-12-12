@@ -32,7 +32,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         recyclerViewInitialize()
 
-        viewModel.fetchPosts()
         viewModel.posts.observe(viewLifecycleOwner, ::postsObserver)
     }
 

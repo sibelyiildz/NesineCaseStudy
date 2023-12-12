@@ -2,7 +2,7 @@
 <resources>
     <dimen name="toolbar_height">50dp</dimen>
     <dimen name="horizontal_margin">@dimen/margin16</dimen>
-    <dimen name="vertical_margin">@dimen/margin16</dimen>
+    <dimen name="vertical_margin">@dimen/margin12</dimen>
 
     <dimen name="margin2">2dp</dimen>
     <dimen name="margin3">3dp</dimen>

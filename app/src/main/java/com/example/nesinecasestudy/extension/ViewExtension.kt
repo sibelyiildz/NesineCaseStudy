@@ -11,37 +11,37 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.nesinecasestudy.util.Constant.IMAGE_URL
 
-fun ImageView.setImageUrl(context: Context, url: String?, progressBar: ProgressBar) {
-    progressBar.isVisible = true
+fun ImageView.setImageUrl(context: Context, url: String?, progressBar: ProgressBar? = null) {
+    progressBar?.isVisible = true
     Glide.with(context)
-        .addDefaultRequestListener(object : RequestListener<Any> {
-            override fun onLoadFailed(
-                e: GlideException?,
-                model: Any?,
-                target: Target<Any>,
-                isFirstResource: Boolean
-            ): Boolean {
-                progressBar.isVisible = false
-                return false
-            }
+        .apply {
+            progressBar?.let {
+                addDefaultRequestListener(object : RequestListener<Any> {
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Any>,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        progressBar.isVisible = false
+                        return false
+                    }
 
-            override fun onResourceReady(
-                resource: Any,
-                model: Any,
-                target: Target<Any>?,
-                dataSource: DataSource,
-                isFirstResource: Boolean
-            ): Boolean {
-                progressBar.isVisible = false
-                return false
-            }
+                    override fun onResourceReady(
+                        resource: Any,
+                        model: Any,
+                        target: Target<Any>?,
+                        dataSource: DataSource,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        progressBar.isVisible = false
+                        return false
+                    }
 
-        })
+                })
+            }
+        }
         .load(url).into(this)
-}
-
-fun ImageView.setImageFromPos(context: Context, pos: Int, progressBar: ProgressBar) {
-    this.setImageUrl(context, getFullImageUrl(pos), progressBar)
 }
 
 fun getFullImageUrl(pos: Int): String {

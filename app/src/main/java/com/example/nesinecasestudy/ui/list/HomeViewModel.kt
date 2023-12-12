@@ -19,7 +19,11 @@ class HomeViewModel @Inject constructor(
     private val _posts = MutableLiveData<UIState<List<PostResponse>>>()
     val posts = _posts.toLiveData()
 
-    fun fetchPosts() {
+    init {
+        fetchPosts()
+    }
+
+    private fun fetchPosts() {
         _posts.setThreadingValue(UIState.Loading)
         getPostsUseCase.execute(Unit) {
             when (it) {

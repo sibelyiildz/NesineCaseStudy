@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import com.example.nesinecasestudy.base.BaseRxUseCase
 import com.example.nesinecasestudy.data.remote.model.PostResponse
 import com.example.nesinecasestudy.domain.repository.Repository
+import com.example.nesinecasestudy.extension.getFullImageUrl
 import com.example.nesinecasestudy.util.Result
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,6 +18,11 @@ class GetPostsUseCase @Inject constructor(private val repository: Repository) :
     override fun execute(request: Unit): Observable<Result<List<PostResponse>>> {
         return Observable.create { source ->
             repository.getPosts()
+                .map { response ->
+                    response.mapIndexed { index, post ->
+                        post.copy(imageUrl = getFullImageUrl(index))
+                    }
+                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->

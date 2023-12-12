@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:divider="@drawable/divider_margin_4"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/horizontal_margin"
+    android:paddingVertical="@dimen/vertical_margin"
+    android:showDividers="middle"
     tools:context=".ui.detail.PostDetailFragment">
 
-    <TextView
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.ShapeableImageView"
+        tools:layout_height="@dimen/margin100"
+        tools:src="@color/gray" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin4"
+        android:textSize="@dimen/font16"
+        tools:text="title" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/font14"
+        tools:text="desc" />
+</LinearLayout>

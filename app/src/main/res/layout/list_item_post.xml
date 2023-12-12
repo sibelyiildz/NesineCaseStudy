@@ -8,7 +8,7 @@
     android:gravity="center"
     android:orientation="horizontal"
     android:paddingHorizontal="@dimen/horizontal_margin"
-    android:paddingVertical="@dimen/vertical_margin"
+    android:paddingVertical="@dimen/margin16"
     android:showDividers="middle">
 
     <FrameLayout
