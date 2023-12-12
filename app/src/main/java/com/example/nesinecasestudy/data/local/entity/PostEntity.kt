@@ -1,4 +1,4 @@
-package com.example.nesinecasestudy.data.local
+package com.example.nesinecasestudy.data.local.entity
 
 import android.os.Parcelable
 import androidx.room.Entity

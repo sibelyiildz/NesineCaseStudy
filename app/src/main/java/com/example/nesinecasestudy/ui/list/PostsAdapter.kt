@@ -7,18 +7,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nesinecasestudy.NavGraphDirections
-import com.example.nesinecasestudy.data.remote.model.PostResponse
 import com.example.nesinecasestudy.databinding.ListItemPostBinding
+import com.example.nesinecasestudy.domain.model.PostUIModel
 import com.example.nesinecasestudy.extension.setImageUrl
 
-class PostsAdapter : ListAdapter<PostResponse, PostsAdapter.ViewHolder>(DIFF) {
+class PostsAdapter : ListAdapter<PostUIModel, PostsAdapter.ViewHolder>(DIFF) {
     companion object {
-        private val DIFF = object : DiffUtil.ItemCallback<PostResponse>() {
-            override fun areItemsTheSame(oldItem: PostResponse, newItem: PostResponse): Boolean {
+        private val DIFF = object : DiffUtil.ItemCallback<PostUIModel>() {
+            override fun areItemsTheSame(oldItem: PostUIModel, newItem: PostUIModel): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: PostResponse, newItem: PostResponse): Boolean {
+            override fun areContentsTheSame(oldItem: PostUIModel, newItem: PostUIModel): Boolean {
                 return oldItem.title == newItem.title &&
                         oldItem.body == newItem.body
             }
@@ -39,7 +39,7 @@ class PostsAdapter : ListAdapter<PostResponse, PostsAdapter.ViewHolder>(DIFF) {
 
     inner class ViewHolder(private val binding: ListItemPostBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bindData(data: PostResponse) {
+        fun bindData(data: PostUIModel) {
             with(binding) {
                 image.setImageUrl(root.context, data.imageUrl, progressBar)
                 title.text = data.title

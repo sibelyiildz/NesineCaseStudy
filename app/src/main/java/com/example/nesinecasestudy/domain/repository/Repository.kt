@@ -1,6 +1,6 @@
 package com.example.nesinecasestudy.domain.repository
 
-import com.example.nesinecasestudy.data.remote.model.PostResponse
+import com.example.nesinecasestudy.domain.model.PostUIModel
 import io.reactivex.Completable
 import io.reactivex.Observable
 
@@ -8,7 +8,7 @@ interface Repository {
 
     fun fetchAndSave(): Completable
 
-    fun getAllPostFromLocal(): Observable<List<PostResponse>>
+    fun getAllPostFromLocal(): Observable<List<PostUIModel>>
 
     fun deletePost(postId: Int): Completable
 

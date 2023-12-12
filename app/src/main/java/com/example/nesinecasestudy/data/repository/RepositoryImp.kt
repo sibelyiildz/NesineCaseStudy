@@ -1,9 +1,9 @@
 package com.example.nesinecasestudy.data.repository
 
 import com.example.nesinecasestudy.data.local.LocalDataSource
-import com.example.nesinecasestudy.data.local.PostEntity
+import com.example.nesinecasestudy.data.local.mapper.toPostEntity
 import com.example.nesinecasestudy.data.remote.RemoteDataSource
-import com.example.nesinecasestudy.data.remote.model.PostResponse
+import com.example.nesinecasestudy.domain.model.PostUIModel
 import com.example.nesinecasestudy.domain.repository.Repository
 import com.example.nesinecasestudy.extension.getFullImageUrl
 import io.reactivex.Completable
@@ -21,14 +21,11 @@ class RepositoryImp @Inject constructor(
                 post.copy(imageUrl = getFullImageUrl(index))
             }
         }.concatMapCompletable { posts ->
-            val postEntities = posts.map { post ->
-                PostEntity(post.id, post.userId, post.title, post.body, post.imageUrl)
-            }
-            localDataSource.savePosts(postEntities)
+            localDataSource.savePosts(posts.map { it.toPostEntity() })
         }
     }
 
-    override fun getAllPostFromLocal(): Observable<List<PostResponse>> {
+    override fun getAllPostFromLocal(): Observable<List<PostUIModel>> {
         return localDataSource.getAllPostFromLocal()
     }
 

@@ -1,15 +1,14 @@
 package com.example.nesinecasestudy.ui.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nesinecasestudy.R
 import com.example.nesinecasestudy.base.BaseFragment
-import com.example.nesinecasestudy.data.remote.model.PostResponse
 import com.example.nesinecasestudy.databinding.FragmentHomeBinding
+import com.example.nesinecasestudy.domain.model.PostUIModel
 import com.example.nesinecasestudy.extension.attach
 import com.example.nesinecasestudy.extension.detach
 import com.example.nesinecasestudy.extension.dialog
@@ -64,11 +63,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     }
 
-    private fun postsObserver(response: UIState<List<PostResponse>>) {
+    private fun postsObserver(response: UIState<List<PostUIModel>>) {
         setLoading(response is UIState.Loading)
         when (response) {
             is UIState.Success -> {
-                Log.v("LogTag", "Success -> ${response.data}")
                 adapter.submitList(response.data)
             }
 
@@ -76,11 +74,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 errorDialog {
                     setMessage(response.error.message)
                 }
-                Log.v("LogTag", "Error -> ${response.error}")
             }
 
             is UIState.Loading -> {
-                Log.v("LogTag", "Loading")
             }
         }
     }

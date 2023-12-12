@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.example.nesinecasestudy.BuildConfig
 import com.example.nesinecasestudy.data.local.LocalDataSource
 import com.example.nesinecasestudy.data.local.LocalDataSourceImp
-import com.example.nesinecasestudy.data.local.PostDao
+import com.example.nesinecasestudy.data.local.dao.PostDao
 import com.example.nesinecasestudy.data.local.PostDatabase
 import dagger.Binds
 import dagger.Module

@@ -1,9 +1,9 @@
 package com.example.nesinecasestudy.data.remote
 
-import com.example.nesinecasestudy.data.remote.model.PostResponse
+import com.example.nesinecasestudy.domain.model.PostUIModel
 import io.reactivex.Observable
 
 interface RemoteDataSource {
 
-    fun getPosts(): Observable<List<PostResponse>>
+    fun getPosts(): Observable<List<PostUIModel>>
 }

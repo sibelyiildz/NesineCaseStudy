@@ -2,7 +2,7 @@ package com.example.nesinecasestudy.ui.list
 
 import androidx.lifecycle.MutableLiveData
 import com.example.nesinecasestudy.base.BaseViewModel
-import com.example.nesinecasestudy.data.remote.model.PostResponse
+import com.example.nesinecasestudy.domain.model.PostUIModel
 import com.example.nesinecasestudy.domain.usecase.DeletePostUseCase
 import com.example.nesinecasestudy.domain.usecase.FetchAndSavePostsUseCase
 import com.example.nesinecasestudy.domain.usecase.GetPostFromLocalUseCase
@@ -20,7 +20,7 @@ class HomeViewModel @Inject constructor(
     private val deletePostUseCase: DeletePostUseCase
 ) : BaseViewModel() {
 
-    private val _posts = MutableLiveData<UIState<List<PostResponse>>>()
+    private val _posts = MutableLiveData<UIState<List<PostUIModel>>>()
     val posts = _posts.toLiveData()
 
     init {
@@ -37,7 +37,7 @@ class HomeViewModel @Inject constructor(
         getPostFromLocalUseCase.execute(Unit, ::setResult).attach()
     }
 
-    private fun setResult(it: Result<List<PostResponse>>) {
+    private fun setResult(it: Result<List<PostUIModel>>) {
         when (it) {
             is Result.Success -> {
                 _posts.setThreadingValue(UIState.Success(it.data))
@@ -52,7 +52,7 @@ class HomeViewModel @Inject constructor(
     fun deletePost(postId: Int) {
         deletePostUseCase.execute(DeletePostUseCase.Request(postId = postId)) {
             val refreshedList = if (_posts.value is UIState.Success) {
-                (_posts.value as UIState.Success<List<PostResponse>>).data
+                (_posts.value as UIState.Success<List<PostUIModel>>).data
             } else {
                 listOf()
             }?.toMutableList()

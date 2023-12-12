@@ -1,6 +1,5 @@
 package com.example.nesinecasestudy.ui.detail
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.nesinecasestudy.base.BaseViewModel
 import com.example.nesinecasestudy.domain.usecase.UpdatePostTitleAndBodyUseCase
@@ -26,7 +25,6 @@ class PostDetailViewModel @Inject constructor(
             )
         ) {
             _updatePost.setThreadingValue(true)
-            Log.v("LogTag", "update successes")
         }.attach()
     }
 
