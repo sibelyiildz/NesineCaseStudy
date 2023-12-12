@@ -10,4 +10,6 @@
     <string name="post_updated">Post Updated</string>
     <string name="home">Home</string>
     <string name="post_detail">Post Detail</string>
+    <string name="title">Title</string>
+    <string name="body">Body</string>
 </resources>

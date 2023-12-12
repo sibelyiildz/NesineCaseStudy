@@ -4,40 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:divider="@drawable/divider_margin_4"
+    android:divider="@drawable/divider_margin_8"
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/horizontal_margin"
     android:paddingVertical="@dimen/vertical_margin"
     android:showDividers="middle"
     tools:context=".ui.detail.PostDetailFragment">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/image"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.ShapeableImageView"
-        tools:layout_height="@dimen/margin100"
-        tools:src="@color/gray" />
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <EditText
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin4"
-        android:textSize="@dimen/font16"
-        tools:text="title" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@drawable/divider_margin_8"
+            android:orientation="vertical"
+            android:showDividers="middle">
 
-    <EditText
-        android:id="@+id/desc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/gray"
-        android:textSize="@dimen/font14"
-        tools:text="desc" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.ShapeableImageView"
+                tools:layout_height="@dimen/margin100"
+                tools:src="@color/gray" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin4"
+                android:hint="@string/title"
+                app:expandedHintEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/font16" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/body"
+                app:expandedHintEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/font14" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/updateButton"
-        android:text="@string/update"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/update" />
 </LinearLayout>

@@ -27,46 +27,48 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 interface NetworkModule {
 
-    @Provides
-    @Singleton
-    fun provideGson(): Gson {
-        return GsonBuilder().create()
-    }
+    companion object {
+        @Provides
+        @Singleton
+        fun provideGson(): Gson {
+            return GsonBuilder().create()
+        }
 
-    @Provides
-    @Singleton
-    fun provideOkHttpClient(
-        @ApplicationContext context: Context
-    ): OkHttpClient {
-        return OkHttpClient().newBuilder()
-            .connectTimeout(2, TimeUnit.MINUTES)
-            .writeTimeout(2, TimeUnit.MINUTES)
-            .readTimeout(2, TimeUnit.MINUTES)
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            .addInterceptor(ChuckerInterceptor(context))
-            .build()
-    }
+        @Provides
+        @Singleton
+        fun provideOkHttpClient(
+            @ApplicationContext context: Context
+        ): OkHttpClient {
+            return OkHttpClient().newBuilder()
+                .connectTimeout(2, TimeUnit.MINUTES)
+                .writeTimeout(2, TimeUnit.MINUTES)
+                .readTimeout(2, TimeUnit.MINUTES)
+                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addInterceptor(ChuckerInterceptor(context))
+                .build()
+        }
 
-    @Provides
-    @Singleton
-    fun provideRetrofit(
-        okHttpClient: OkHttpClient,
-        gson: Gson
-    ): Retrofit {
-        return Retrofit.Builder()
-            .client(okHttpClient)
-            .baseUrl(BuildConfig.BASE_URL)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build()
-    }
+        @Provides
+        @Singleton
+        fun provideRetrofit(
+            okHttpClient: OkHttpClient,
+            gson: Gson
+        ): Retrofit {
+            return Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(BuildConfig.BASE_URL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build()
+        }
 
-    @Provides
-    @Singleton
-    fun provideApi(
-        retrofit: Retrofit
-    ): Api {
-        return retrofit.create()
+        @Provides
+        @Singleton
+        fun provideApi(
+            retrofit: Retrofit
+        ): Api {
+            return retrofit.create()
+        }
     }
 
     @Binds

@@ -19,20 +19,22 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 interface DatabaseModule {
 
-    @Provides
-    @Singleton
-    fun provideDatabase(@ApplicationContext appContext: Context): PostDatabase {
-        return Room.databaseBuilder(
-            appContext,
-            PostDatabase::class.java,
-            BuildConfig.DB_NAME
-        ).build()
-    }
+    companion object {
+        @Provides
+        @Singleton
+        fun provideDatabase(@ApplicationContext appContext: Context): PostDatabase {
+            return Room.databaseBuilder(
+                appContext,
+                PostDatabase::class.java,
+                BuildConfig.DB_NAME
+            ).build()
+        }
 
-    @Provides
-    @Singleton
-    fun provideDao(postDatabase: PostDatabase): PostDao {
-        return postDatabase.postDao()
+        @Provides
+        @Singleton
+        fun provideDao(postDatabase: PostDatabase): PostDao {
+            return postDatabase.postDao()
+        }
     }
 
     @Binds

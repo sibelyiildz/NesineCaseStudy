@@ -3,9 +3,10 @@ package com.example.nesinecasestudy.data.local
 import com.example.nesinecasestudy.data.remote.model.PostResponse
 import io.reactivex.Completable
 import io.reactivex.Observable
+import javax.inject.Inject
 
 
-class LocalDataSourceImp(private val postDao: PostDao) : LocalDataSource {
+class LocalDataSourceImp @Inject constructor(private val postDao: PostDao) : LocalDataSource {
 
     override fun savePosts(postEntities: List<PostEntity>): Completable {
         return postDao.insertPosts(postEntities)
