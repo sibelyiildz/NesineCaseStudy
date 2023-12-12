@@ -22,7 +22,6 @@ object Versions {
     const val RX_JAVA = "2.1.1"
 
     const val OKHTTP3 = "4.11.0"
-    const val CHUCKER = "4.0.0"
 
     const val JUNIT4 = "4.13.2"
     const val ESPRESSO = "3.5.1"

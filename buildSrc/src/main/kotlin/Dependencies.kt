@@ -21,7 +21,6 @@ object Dependencies {
     const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE}"
 
     const val OKHTTP_LOGGER = "com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP3}"
-    const val CHUCKER = "com.github.chuckerteam.chucker:library:${Versions.CHUCKER}"
 
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
     const val GSON = "com.google.code.gson:gson:${Versions.GSON}"
