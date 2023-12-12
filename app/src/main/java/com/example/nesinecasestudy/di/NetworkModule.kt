@@ -1,7 +1,6 @@
 package com.example.nesinecasestudy.di
 
 import android.content.Context
-import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.nesinecasestudy.BuildConfig
 import com.example.nesinecasestudy.data.remote.RemoteDataSource
 import com.example.nesinecasestudy.data.remote.RemoteDataSourceImp
@@ -44,7 +43,6 @@ interface NetworkModule {
                 .writeTimeout(2, TimeUnit.MINUTES)
                 .readTimeout(2, TimeUnit.MINUTES)
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .addInterceptor(ChuckerInterceptor(context))
                 .build()
         }
 
