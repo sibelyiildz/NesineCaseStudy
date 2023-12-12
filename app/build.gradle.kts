@@ -90,6 +90,7 @@ dependencies {
     implementation(Dependencies.ROOM_KTX)
     annotationProcessor(Dependencies.ROOM_COMPILER)
     kapt(Dependencies.ROOM_COMPILER)
+    implementation(Dependencies.ROOM_RXJAVA)
 
 
 }

@@ -3,7 +3,8 @@ package com.example.nesinecasestudy.ui.list
 import androidx.lifecycle.MutableLiveData
 import com.example.nesinecasestudy.base.BaseViewModel
 import com.example.nesinecasestudy.data.remote.model.PostResponse
-import com.example.nesinecasestudy.domain.usecase.GetPostsUseCase
+import com.example.nesinecasestudy.domain.usecase.FetchAndSavePostsUseCase
+import com.example.nesinecasestudy.domain.usecase.GetPostFromLocalUseCase
 import com.example.nesinecasestudy.extension.setThreadingValue
 import com.example.nesinecasestudy.extension.toLiveData
 import com.example.nesinecasestudy.util.Result
@@ -13,19 +14,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getPostsUseCase: GetPostsUseCase
+    private val fetchAndSavePostsUseCase: FetchAndSavePostsUseCase,
+    private val getPostFromLocalUseCase: GetPostFromLocalUseCase
 ) : BaseViewModel() {
 
     private val _posts = MutableLiveData<UIState<List<PostResponse>>>()
     val posts = _posts.toLiveData()
 
     init {
-        fetchPosts()
+        fetchAndSavePosts()
     }
 
-    private fun fetchPosts() {
+    private fun fetchAndSavePosts() {
         _posts.setThreadingValue(UIState.Loading)
-        getPostsUseCase.execute(Unit) {
+        fetchAndSavePostsUseCase.execute(Unit) {
             when (it) {
                 is Result.Success -> {
                     _posts.setThreadingValue(UIState.Success(it.data))
