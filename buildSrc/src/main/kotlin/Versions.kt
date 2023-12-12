@@ -32,4 +32,6 @@ object Versions {
 
     const val LOTTIE = "6.2.0"
 
+    const val ROOM = "2.6.1"
+
 }

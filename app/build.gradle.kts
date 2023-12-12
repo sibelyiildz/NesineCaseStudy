@@ -24,10 +24,12 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
+            buildConfigField("String", "DB_NAME", "\"post.db\"")
             versionNameSuffix = "-dev"
         }
         release {
             buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
+            buildConfigField("String", "DB_NAME", "\"post.db\"")
             isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -83,5 +85,11 @@ dependencies {
     kapt(Dependencies.HILT_COMPILER)
 
     implementation(Dependencies.LOTTIE)
+
+    implementation(Dependencies.ROOM_RUNTIME)
+    implementation(Dependencies.ROOM_KTX)
+    annotationProcessor(Dependencies.ROOM_COMPILER)
+    kapt(Dependencies.ROOM_COMPILER)
+
 
 }
