@@ -2,13 +2,12 @@ package com.example.nesinecasestudy.base
 
 import androidx.annotation.CheckResult
 import com.example.nesinecasestudy.BuildConfig
-import io.reactivex.Completable
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
 
-abstract class BaseRxUseCase<REQUEST, RESPONSE> : RxUseCase<REQUEST, RESPONSE> {
+abstract class BaseObservableRxUseCase<REQUEST, RESPONSE> : ObservableRxUseCase<REQUEST, RESPONSE> {
 
     @CheckResult
     override fun execute(request: REQUEST, data: Consumer<RESPONSE>): Disposable {
@@ -20,7 +19,7 @@ abstract class BaseRxUseCase<REQUEST, RESPONSE> : RxUseCase<REQUEST, RESPONSE> {
     }
 }
 
-interface RxUseCase<REQUEST, RESPONSE> {
+interface ObservableRxUseCase<REQUEST, RESPONSE> {
     @CheckResult
     fun execute(request: REQUEST): Observable<RESPONSE>
 
@@ -34,11 +33,10 @@ interface RxUseCase<REQUEST, RESPONSE> {
     }
 }
 
-
-abstract class BaseRxUseCaseCompletable<REQUEST> : RxUseCaseCompletable<REQUEST> {
+abstract class BaseSingleRxUseCase<REQUEST, RESPONSE> : RxSingleUseCase<REQUEST, RESPONSE> {
 
     @CheckResult
-    override fun execute(request: REQUEST, data: Action): Disposable {
+    override fun execute(request: REQUEST, data: Consumer<RESPONSE>): Disposable {
         return execute(request).subscribe(data) { t ->
             if (BuildConfig.DEBUG) {
                 t.printStackTrace()
@@ -47,18 +45,16 @@ abstract class BaseRxUseCaseCompletable<REQUEST> : RxUseCaseCompletable<REQUEST>
     }
 }
 
-
-interface RxUseCaseCompletable<REQUEST> {
+interface RxSingleUseCase<REQUEST, RESPONSE> {
     @CheckResult
-    fun execute(request: REQUEST): Completable
+    fun execute(request: REQUEST): Single<RESPONSE>
 
     @CheckResult
-    fun execute(request: REQUEST, data: Action): Disposable {
+    fun execute(request: REQUEST, data: Consumer<RESPONSE>): Disposable {
         return execute(request).subscribe(data) { t ->
             if (BuildConfig.DEBUG) {
                 t.printStackTrace()
             }
         }
     }
-
 }

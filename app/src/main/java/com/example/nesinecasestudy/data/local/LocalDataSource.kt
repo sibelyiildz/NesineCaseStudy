@@ -11,7 +11,7 @@ interface LocalDataSource {
 
     fun getAllPostFromLocal(): Observable<List<PostModel>>
 
-    fun deletePost(postId: Int): Completable
+    fun deletePost(postId: Int): Int
 
-    fun updatePostTitleAndBody(postId: Int, title: String, body: String): Completable
+    fun updatePostTitleAndBody(postId: Int, title: String, body: String): Int
 }

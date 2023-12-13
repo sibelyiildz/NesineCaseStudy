@@ -51,13 +51,21 @@ class HomeViewModel @Inject constructor(
 
     fun deletePost(postId: Int) {
         deletePostUseCase.execute(DeletePostUseCase.Request(postId = postId)) {
-            val refreshedList = if (_posts.value is UIState.Success) {
-                (_posts.value as UIState.Success<List<PostModel>>).data
-            } else {
-                listOf()
-            }?.toMutableList()
-            refreshedList?.remove(refreshedList.find { postId == it.id })
-            _posts.setThreadingValue(UIState.Success(refreshedList))
+            when (it) {
+                is Result.Success -> {
+                    val refreshedList = if (_posts.value is UIState.Success) {
+                        (_posts.value as UIState.Success<List<PostModel>>).data
+                    } else {
+                        listOf()
+                    }?.toMutableList()
+                    refreshedList?.remove(refreshedList.find { postId == it.id })
+                    _posts.setThreadingValue(UIState.Success(refreshedList))
+                }
+
+                is Result.Failure -> {
+                    _posts.setThreadingValue(UIState.Error(it.error))
+                }
+            }
         }.attach()
     }
 

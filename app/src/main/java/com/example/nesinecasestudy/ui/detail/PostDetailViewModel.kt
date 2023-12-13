@@ -5,6 +5,8 @@ import com.example.nesinecasestudy.base.BaseViewModel
 import com.example.nesinecasestudy.domain.usecase.UpdatePostTitleAndBodyUseCase
 import com.example.nesinecasestudy.extension.setThreadingValue
 import com.example.nesinecasestudy.extension.toLiveData
+import com.example.nesinecasestudy.util.Result
+import com.example.nesinecasestudy.util.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -13,10 +15,11 @@ class PostDetailViewModel @Inject constructor(
     private val updatePostTitleAndBodyUseCase: UpdatePostTitleAndBodyUseCase
 ) : BaseViewModel() {
 
-    private val _updatePost = MutableLiveData<Boolean>()
+    private val _updatePost = MutableLiveData<UIState<Unit>>()
     val updatePost = _updatePost.toLiveData()
 
     fun updatePostTitleAndBody(postId: Int, title: String, body: String) {
+        _updatePost.setThreadingValue(UIState.Loading)
         updatePostTitleAndBodyUseCase.execute(
             UpdatePostTitleAndBodyUseCase.Request(
                 postId = postId,
@@ -24,7 +27,15 @@ class PostDetailViewModel @Inject constructor(
                 body = body
             )
         ) {
-            _updatePost.setThreadingValue(true)
+            when (it) {
+                is Result.Success -> {
+                    _updatePost.setThreadingValue(UIState.Success(Unit))
+                }
+
+                is Result.Failure -> {
+                    _updatePost.setThreadingValue(UIState.Error(it.error))
+                }
+            }
         }.attach()
     }
 

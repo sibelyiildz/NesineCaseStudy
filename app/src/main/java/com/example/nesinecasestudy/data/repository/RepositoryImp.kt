@@ -8,6 +8,7 @@ import com.example.nesinecasestudy.domain.repository.Repository
 import com.example.nesinecasestudy.extension.getFullImageUrl
 import io.reactivex.Completable
 import io.reactivex.Observable
+import io.reactivex.Single
 import javax.inject.Inject
 
 class RepositoryImp @Inject constructor(
@@ -29,12 +30,18 @@ class RepositoryImp @Inject constructor(
         return localDataSource.getAllPostFromLocal()
     }
 
-    override fun deletePost(postId: Int): Completable {
-        return localDataSource.deletePost(postId)
+    override fun deletePost(postId: Int): Single<Boolean> {
+        return Single.create {
+            val result = localDataSource.deletePost(postId)
+            it.onSuccess((result == 0).not())
+        }
     }
 
-    override fun updatePostTitleAndBody(postId: Int, title: String, body: String): Completable {
-        return localDataSource.updatePostTitleAndBody(postId, title, body)
+    override fun updatePostTitleAndBody(postId: Int, title: String, body: String): Single<Boolean> {
+        return Single.create {
+            val result = localDataSource.updatePostTitleAndBody(postId, title, body)
+            it.onSuccess((result == 0).not())
+        }
     }
 
 }

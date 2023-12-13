@@ -8,7 +8,6 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import javax.inject.Inject
 
-
 class LocalDataSourceImp @Inject constructor(private val postDao: PostDao) : LocalDataSource {
 
     override fun savePosts(postEntities: List<PostEntity>): Completable {
@@ -21,11 +20,11 @@ class LocalDataSourceImp @Inject constructor(private val postDao: PostDao) : Loc
         }
     }
 
-    override fun deletePost(postId: Int): Completable {
+    override fun deletePost(postId: Int): Int {
         return postDao.deletePost(postId)
     }
 
-    override fun updatePostTitleAndBody(postId: Int, title: String, body: String): Completable {
+    override fun updatePostTitleAndBody(postId: Int, title: String, body: String): Int {
         return postDao.updatePostTitleAndBody(postId, title, body)
     }
 

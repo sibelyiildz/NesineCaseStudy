@@ -13,7 +13,9 @@ import androidx.navigation.fragment.navArgs
 import com.example.nesinecasestudy.R
 import com.example.nesinecasestudy.base.BaseFragment
 import com.example.nesinecasestudy.databinding.FragmentPostDetailBinding
+import com.example.nesinecasestudy.extension.errorDialog
 import com.example.nesinecasestudy.extension.setImageUrl
+import com.example.nesinecasestudy.util.UIState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,11 +44,27 @@ class PostDetailFragment :
         viewModel.updatePost.observe(viewLifecycleOwner, ::updatePostObserver)
     }
 
-    private fun updatePostObserver(b: Boolean?) {
-        Toast.makeText(requireContext(), getString(R.string.post_updated), Toast.LENGTH_SHORT)
-            .show()
-        setFragmentResult(POST_UPDATE, bundleOf())
-        findNavController().popBackStack()
+    private fun updatePostObserver(response: UIState<Unit>) {
+        setLoading(response is UIState.Loading)
+        when (response) {
+            is UIState.Success -> {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.post_updated),
+                    Toast.LENGTH_SHORT
+                ).show()
+                setFragmentResult(POST_UPDATE, bundleOf())
+                findNavController().popBackStack()
+            }
+
+            is UIState.Error -> {
+                errorDialog {
+                    setMessage(response.error.message)
+                }
+            }
+
+            UIState.Loading -> {}
+        }
     }
 
     private fun setupUI() {
