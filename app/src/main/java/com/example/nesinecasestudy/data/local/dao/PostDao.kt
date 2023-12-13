@@ -18,8 +18,8 @@ interface PostDao {
     fun getAllPosts(): Observable<List<PostEntity>>
 
     @Query("DELETE FROM post WHERE id = :id")
-    fun deletePost(id: Int): Completable
+    fun deletePost(id: Int): Int
 
     @Query("UPDATE post SET title = :newTitle, body = :newBody WHERE id = :postId")
-    fun updatePostTitleAndBody(postId: Int, newTitle: String, newBody: String): Completable
+    fun updatePostTitleAndBody(postId: Int, newTitle: String, newBody: String): Int
 }

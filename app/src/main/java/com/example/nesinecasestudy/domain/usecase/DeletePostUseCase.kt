@@ -1,62 +1,32 @@
 package com.example.nesinecasestudy.domain.usecase
 
 import android.annotation.SuppressLint
-import com.example.nesinecasestudy.base.BaseRxUseCaseCompletable
+import com.example.nesinecasestudy.base.BaseSingleRxUseCase
 import com.example.nesinecasestudy.domain.repository.Repository
-import io.reactivex.Completable
+import com.example.nesinecasestudy.util.Result
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class DeletePostUseCase @Inject constructor(
     private val repository: Repository
-) : BaseRxUseCaseCompletable<DeletePostUseCase.Request>() {
+) : BaseSingleRxUseCase<DeletePostUseCase.Request, Result<Boolean>>() {
     @SuppressLint("CheckResult")
-    override fun execute(request: Request): Completable {
-        return Completable.create { source ->
-            repository.deletePost(postId = request.postId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    if (source.isDisposed) return@subscribe
-                    /*  source.onNext(Result.Success(Unit))*/
-                    source.onComplete()
-                }, { throwable ->
-                    if (source.isDisposed) return@subscribe
-                    /*  source.onNext(Result.Failure(throwable))*/
-                    source.onComplete()
-                })
-        }
+    override fun execute(request: Request): Single<Result<Boolean>> {
+        return repository.deletePost(postId = request.postId)
+            .map {
+                if (it) {
+                    Result.Success(it)
+                } else {
+                    Result.Failure(NullPointerException())
+                }
+            }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+
     }
 
     data class Request(val postId: Int)
 
-
 }
-
-
-/*
-class DeletePostUseCase @Inject constructor(private val repository: Repository) :
-    BaseRxUseCase<DeletePostUseCase.Request, Boolean>() {
-    @SuppressLint("CheckResult")
-    override fun execute(request: Request): Observable<Boolean> {
-        return Observable.create { source ->
-            repository.deletePost(request.postId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .toObservable<Boolean>()
-                .subscribe({
-                    if (source.isDisposed) return@subscribe
-                    source.onNext(true)
-                    source.onComplete()
-                }, { throwable ->
-                    if (source.isDisposed) return@subscribe
-                    source.onNext(false)
-                    source.onComplete()
-                })
-        }
-    }
-
-    data class Request(val postId: Int)
-}
-*/
