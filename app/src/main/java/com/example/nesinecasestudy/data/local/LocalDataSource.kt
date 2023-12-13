@@ -1,7 +1,7 @@
 package com.example.nesinecasestudy.data.local
 
 import com.example.nesinecasestudy.data.local.entity.PostEntity
-import com.example.nesinecasestudy.domain.model.PostUIModel
+import com.example.nesinecasestudy.domain.model.PostModel
 import io.reactivex.Completable
 import io.reactivex.Observable
 
@@ -9,7 +9,7 @@ interface LocalDataSource {
 
     fun savePosts(postEntities: List<PostEntity>): Completable
 
-    fun getAllPostFromLocal(): Observable<List<PostUIModel>>
+    fun getAllPostFromLocal(): Observable<List<PostModel>>
 
     fun deletePost(postId: Int): Completable
 

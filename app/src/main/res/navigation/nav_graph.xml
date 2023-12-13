@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_post_detail">
         <argument
             android:name="postResponse"
-            app:argType="com.example.nesinecasestudy.domain.model.PostUIModel" />
+            app:argType="com.example.nesinecasestudy.domain.model.PostModel" />
     </fragment>
 
     <action

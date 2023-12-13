@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.nesinecasestudy.R
 import com.example.nesinecasestudy.base.BaseFragment
 import com.example.nesinecasestudy.databinding.FragmentHomeBinding
-import com.example.nesinecasestudy.domain.model.PostUIModel
+import com.example.nesinecasestudy.domain.model.PostModel
 import com.example.nesinecasestudy.extension.attach
 import com.example.nesinecasestudy.extension.detach
 import com.example.nesinecasestudy.extension.dialog
@@ -63,7 +63,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     }
 
-    private fun postsObserver(response: UIState<List<PostUIModel>>) {
+    private fun postsObserver(response: UIState<List<PostModel>>) {
         setLoading(response is UIState.Loading)
         when (response) {
             is UIState.Success -> {

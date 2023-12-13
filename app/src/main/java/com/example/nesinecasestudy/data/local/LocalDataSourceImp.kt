@@ -2,8 +2,8 @@ package com.example.nesinecasestudy.data.local
 
 import com.example.nesinecasestudy.data.local.dao.PostDao
 import com.example.nesinecasestudy.data.local.entity.PostEntity
-import com.example.nesinecasestudy.domain.mapper.toPostUIModel
-import com.example.nesinecasestudy.domain.model.PostUIModel
+import com.example.nesinecasestudy.domain.mapper.toPostModel
+import com.example.nesinecasestudy.domain.model.PostModel
 import io.reactivex.Completable
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -15,9 +15,9 @@ class LocalDataSourceImp @Inject constructor(private val postDao: PostDao) : Loc
         return postDao.insertPosts(postEntities)
     }
 
-    override fun getAllPostFromLocal(): Observable<List<PostUIModel>> {
+    override fun getAllPostFromLocal(): Observable<List<PostModel>> {
         return postDao.getAllPosts().map { list ->
-            list.map { it.toPostUIModel() }
+            list.map { it.toPostModel() }
         }
     }
 

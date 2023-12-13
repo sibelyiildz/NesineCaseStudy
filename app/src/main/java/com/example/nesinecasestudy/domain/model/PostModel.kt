@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Keep
-data class PostUIModel(
+data class PostModel(
     val id: Int,
     val userId: Int,
     val title: String,

@@ -3,7 +3,7 @@ package com.example.nesinecasestudy.data.repository
 import com.example.nesinecasestudy.data.local.LocalDataSource
 import com.example.nesinecasestudy.data.local.mapper.toPostEntity
 import com.example.nesinecasestudy.data.remote.RemoteDataSource
-import com.example.nesinecasestudy.domain.model.PostUIModel
+import com.example.nesinecasestudy.domain.model.PostModel
 import com.example.nesinecasestudy.domain.repository.Repository
 import com.example.nesinecasestudy.extension.getFullImageUrl
 import io.reactivex.Completable
@@ -25,7 +25,7 @@ class RepositoryImp @Inject constructor(
         }
     }
 
-    override fun getAllPostFromLocal(): Observable<List<PostUIModel>> {
+    override fun getAllPostFromLocal(): Observable<List<PostModel>> {
         return localDataSource.getAllPostFromLocal()
     }
 
